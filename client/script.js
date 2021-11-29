@@ -757,7 +757,6 @@ const cachePics = () => {
 
 const refuse = (param) => {
   return () => {
-    console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
     } else if(param == "info") {
@@ -783,7 +782,8 @@ const refuse = (param) => {
     } catch (error) {
       console.log(error.message)
     }
-    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=59508', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
+    domInjector("h4", ".intro", texts.refuse)
+    domInjector("h3", ".intro", `https://survey.maximiles.com/static-screenout?p=59508&m=${server.user.BilendiID}`)    
   }
 }
 
