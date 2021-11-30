@@ -636,9 +636,7 @@ const renderFinish = () => {
   }
 
   if (neededReward) {
-    console.log("reward needed")
     if(server.user.session_type === 'online') {
-      console.log("online type")
       const succesObj = {
         session_type: "bilendi",
         type: "success",
@@ -648,7 +646,7 @@ const renderFinish = () => {
         } catch (error) {
           console.log(error.message)
         }
-      domInjector("h4", ".intro", `https://survey.maximiles.com/static-complete?p=75746_0193c42d&m=${server.user.BilendiID}`)
+      domInjector("h4", ".intro", (texts.rewardOnlineLink.replace('https://survey.maximiles.com/static-complete?p=75746_0193c42d', (texts.rewardOnlineLink.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
     } else {
       domInjector("h4", ".intro", texts.rewardOnlineInfo)
       domInjector("h2", ".intro", getRewardCode())
@@ -759,6 +757,7 @@ const cachePics = () => {
 
 const refuse = (param) => {
   return () => {
+    console.log(param);
     if (param == "age") {
       pushServer("NA", "NA", "NA")
     } else if(param == "info") {
@@ -784,8 +783,7 @@ const refuse = (param) => {
     } catch (error) {
       console.log(error.message)
     }
-    domInjector("h4", ".intro", texts.refuse)
-    domInjector("h3", ".intro", ` https://survey.maximiles.com/static-screenout?p=75746&m=${server.user.BilendiID}`)    
+    domInjector("h4", ".intro", (texts.refuse.replace('https://survey.maximiles.com/static-screenout?p=75746', (texts.refuse.split("'")[1].concat(`&m=${server.user.BilendiID}`)))))
   }
 }
 
